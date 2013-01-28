@@ -1,4 +1,11 @@
 <?php
+	/**
+	 * @file		CurlManager Class
+	 * @author		Ivaylo Enev
+	 * @contact		ivailoenev@gmail.com
+	 * @license		GPL 2
+	 */
+ 
 	class CurlManager
 	{
 		private $_ch;
