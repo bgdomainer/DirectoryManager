@@ -1,4 +1,11 @@
 <?php
+	/**
+	 * @file		DirectoryManager Class
+	 * @author		Ivaylo Enev
+	 * @contact		ivailoenev@gmail.com
+	 * @license		GPL 2
+	 */
+	 
 	include 'class_FileManager.php';
 	
 	class DirectoryManager extends FileManager
@@ -245,8 +252,10 @@
 			} 
 		}
 		
-		public function directoryToZip( $target_dir, $destination_dir, $zip_archive_name = 'archive.zip' )
+		public function directoryToZip( $target_dir, $destination_dir, $zip_archive_name = 'archive' )
 		{
+			//Alpha version :) 
+			
 			if( !class_exists('ZipArchive') ){
 				throw new Exception('Class ZipArchive do not exists, please enable it before you continue.');	
 			}
@@ -258,7 +267,7 @@
 			$this->isValidDir($target_dir);
 			
 			$zip_archive_name 		= $this->isValidFileName($zip_archive_name);
-			$zip_file_to_create 	= $destination_dir. DIRECTORY_SEPARATOR . $zip_archive_name;
+			$zip_file_to_create 	= $destination_dir. DIRECTORY_SEPARATOR . $zip_archive_name.'.zip';
 			
 			if( ! is_writable($destination_dir) ) {
 				throw new Exception('Not a writable directory('.$destination_dir.')');
@@ -325,13 +334,14 @@
 		
 		public function moveFilesToDirectory( $files_to_move, $to_dir )
 		{
+			//Alpha version :) 
 			$to_dir				= $this->isValidDirName($to_dir);
 			$this->isValidDir($to_dir);
 			
 			if( is_array($files_to_move) ){
 				foreach($files_to_move as $item){
-					if( is_file($item) ){
-						$this->moveFile($item, $to_dir.DIRECTORY_SEPARATOR.$item);
+					if( is_file($item) ){ 
+						$this->moveFile($item, $to_dir.DIRECTORY_SEPARATOR.basename($item));
 					}
 					elseif( is_dir($item) ){
 						$this->_moveDir($item, $to_dir.DIRECTORY_SEPARATOR.$item);

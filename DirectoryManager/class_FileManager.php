@@ -1,5 +1,11 @@
 <?php
-	
+	/**
+	 * @file		FileManager Class
+	 * @author		Ivaylo Enev
+	 * @contact		ivailoenev@gmail.com
+	 * @license		GPL 2
+	 */
+	 
 	include 'class_CurlManager.php';
 	
 	class FileManager
